@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import Input from "../components/ui/Input";
 import { useProjects } from "../hooks/useProjects";
 
 export default function DashboardPage() {
@@ -21,49 +24,53 @@ export default function DashboardPage() {
   }
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1 style={{ margin: 0 }}>Dashboard</h1>
-      <p style={{ marginTop: 8 }}>Tus proyectos</p>
-
-      <form
-        onSubmit={handleCreate}
-        style={{ display: "flex", gap: 8, marginTop: 12 }}
-      >
-        <input
-          placeholder="Tema de tesis (ej: Impacto de IA en educación superior)"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          style={{ flex: 1 }}
-        />
-        <button type="submit" disabled={creating || !topic.trim()}>
-          {creating ? "Creando..." : "Crear"}
-        </button>
-      </form>
-
-      {error ? (
-        <p style={{ color: "crimson", marginTop: 12 }}>{error}</p>
-      ) : null}
-
-      {loading ? (
-        <p style={{ marginTop: 12 }}>Cargando proyectos...</p>
-      ) : (
-        <div style={{ marginTop: 16 }}>
-          {projects.length === 0 ? (
-            <p>No tienes proyectos todavía.</p>
-          ) : (
-            <ul style={{ paddingLeft: 18 }}>
-              {projects.map((p) => (
-                <li key={p.id}>
-                  <Link to={`/projects/${p.id}`}>{p.title ?? p.topic}</Link>
-                </li>
-              ))}
-            </ul>
-          )}
+    <div className="container">
+      <div className="stack">
+        <div className="stack" style={{ gap: 6 }}>
+          <h1>Dashboard</h1>
+          <p>Tus proyectos</p>
         </div>
-      )}
 
-      <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-        <Link to="/">Landing</Link>
+        <Card>
+          <form className="row" onSubmit={handleCreate}>
+            <div style={{ flex: 1, minWidth: 260 }}>
+              <Input
+                placeholder="Tema de tesis (ej: Impacto de IA en educación superior)"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+              />
+            </div>
+            <Button type="submit" disabled={creating || !topic.trim()}>
+              {creating ? "Creando..." : "Crear"}
+            </Button>
+          </form>
+        </Card>
+
+        {error ? <p className="error">{error}</p> : null}
+
+        {loading ? (
+          <p>Cargando proyectos...</p>
+        ) : (
+          <Card>
+            {projects.length === 0 ? (
+              <p>No tienes proyectos todavía.</p>
+            ) : (
+              <ul style={{ paddingLeft: 18, margin: 0 }}>
+                {projects.map((p) => (
+                  <li key={p.id} style={{ marginTop: 6 }}>
+                    <Link to={`/projects/${p.id}`}>{p.title ?? p.topic}</Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        )}
+
+        <div className="row">
+          <Link className="ui-btn ui-btn--ghost" to="/">
+            Landing
+          </Link>
+        </div>
       </div>
     </div>
   );

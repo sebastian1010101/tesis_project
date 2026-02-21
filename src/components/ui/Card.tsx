@@ -4,6 +4,11 @@ type CardProps = HTMLAttributes<HTMLDivElement> & {
   children?: ReactNode;
 };
 
-export default function Card({ children, ...rest }: CardProps) {
-  return <div {...rest}>{children}</div>;
+export default function Card({ children, className, ...rest }: CardProps) {
+  const cls = ["ui-card", className].filter(Boolean).join(" ");
+  return (
+    <div className={cls} {...rest}>
+      {children}
+    </div>
+  );
 }

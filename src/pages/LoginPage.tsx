@@ -1,6 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import Input from "../components/ui/Input";
 export default function LoginPage() {
   const { user, loading, signIn, signUp, signOut } = useAuth();
   const [email, setEmail] = useState("");
@@ -27,59 +31,81 @@ export default function LoginPage() {
     }
   }
   if (loading) {
-    return <p>Cargando...</p>;
+    return <p className="container">Cargando...</p>;
   }
   if (user) {
     return (
-      <div>
-        <h2>Bienvenido{user.email}</h2>
-        <button onClick={signOut}>Cerrar sesion</button>
-        <div style={{ marginTop: 12 }}>
-          <Link to="/dashboard">Ir a Dashboard</Link>
-        </div>
+      <div className="container">
+        <Card>
+          <div className="stack">
+            <h2>Bienvenido {user.email}! ya estas logeado</h2>
+            <div className="row">
+              <Button type="button" variant="secondary" onClick={signOut}>
+                Cerrar sesion
+              </Button>
+              <Link className="ui-btn ui-btn--primary" to="/dashboard">
+                Ir a Dashboard
+              </Link>
+            </div>
+          </div>
+        </Card>
       </div>
     );
   }
   return (
-    <div style={{ padding: 24 }}>
-      <h1 style={{ margin: 0 }}>{mode === "login" ? "Login" : "Registro"}</h1>
-      <p style={{ marginTop: 8 }}>
-        Autenticación con Supabase (pendiente en Paso 2).
-      </p>
-      {error ? <p style={{ marginTop: 8, color: "crimson" }}>{error}</p> : null}
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">
-          {mode === "login" ? "Entrar" : "Crear cuenta"}
-        </button>
-      </form>
+    <div className="container">
+      <Card>
+        <div className="stack">
+          <h1>{mode === "login" ? "Login" : "Registro"}</h1>
+          {error ? <p className="error">{error}</p> : null}
 
-      <div style={{ marginTop: 12 }}>
-        <button
-          type="button"
-          onClick={() => {
-            setError(null);
-            setMode((m) => (m === "login" ? "register" : "login"));
-          }}
-        >
-          {mode === "login" ? "No tengo cuenta" : "Ya tengo cuenta"}
-        </button>
-      </div>
+          <form className="stack" onSubmit={handleSubmit}>
+            <div className="stack" style={{ gap: 6 }}>
+              <p style={{ margin: 0 }}>Email</p>
+              <Input
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-      <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-        <Link to="/">Volver</Link>
-        <Link to="/dashboard">Ir a Dashboard</Link>
-      </div>
+            <div className="stack" style={{ gap: 6 }}>
+              <p style={{ margin: 0 }}>Contraseña</p>
+              <Input
+                placeholder="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="row">
+              <Button type="submit">
+                {mode === "login" ? "Entrar" : "Crear cuenta"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => {
+                  setError(null);
+                  setMode((m) => (m === "login" ? "register" : "login"));
+                }}
+              >
+                {mode === "login" ? "Registrate aqui" : "Iniciar sesion aqui"}
+              </Button>
+            </div>
+          </form>
+
+          <div className="row">
+            <Link className="ui-btn ui-btn--ghost" to="/">
+              Volver
+            </Link>
+            <Link className="ui-btn ui-btn--secondary" to="/dashboard">
+              Ir a Dashboard
+            </Link>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }

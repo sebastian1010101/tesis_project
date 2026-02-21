@@ -1,19 +1,28 @@
 import { Link } from "react-router-dom";
 
+import Card from "../components/ui/Card";
+
 export default function LandingPage() {
   return (
-    <div style={{ padding: 24 }}>
-      <h1 style={{ margin: 0 }}>Tesis Assistant (MVP)</h1>
-      <p style={{ marginTop: 8 }}>
-        Estructura tu tesis: define un tema, genera preguntas de investigación y
-        desarrolla respuestas.
-      </p>
+    <div className="container">
+      <Card>
+        <div className="stack">
+          <h1>Tesis.ai</h1>
+          <p>
+            Estructura tu tesis: define un tema, genera preguntas de
+            investigación y desarrolla tus respuestas.
+          </p>
 
-      <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-        <Link to="/login">Ir a Login</Link>
-        <Link to="/dashboard">Ir a Dashboard</Link>
-        <Link to="/projects/demo">Ir a Proyecto (demo)</Link>
-      </div>
+          <div className="row">
+            <Link className="ui-btn ui-btn--primary" to="/login">
+              Login
+            </Link>
+            <Link className="ui-btn ui-btn--secondary" to="/dashboard">
+              Dashboard
+            </Link>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }

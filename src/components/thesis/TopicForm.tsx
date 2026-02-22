@@ -5,6 +5,7 @@ type TopicFormProps = {
   disabled?: boolean;
 };
 
-export default function TopicForm(_props: TopicFormProps) {
+export default function TopicForm(props: TopicFormProps) {
+  void props;
   return <div />;
 }

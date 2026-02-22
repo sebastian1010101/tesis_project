@@ -26,8 +26,14 @@ export default function LoginPage() {
         await signUp(email, password);
       }
       navigate(from ?? "/dashboard", { replace: true });
-    } catch (error: any) {
-      setError(error?.message ?? "No se pudo iniciar sesión");
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : typeof error === "string"
+            ? error
+            : "No se pudo iniciar sesión";
+      setError(message);
     }
   }
   if (loading) {
@@ -40,7 +46,7 @@ export default function LoginPage() {
           <div className="stack">
             <h2>Bienvenido {user.email}! ya estas logeado</h2>
             <div className="row">
-              <Button type="button" variant="secondary" onClick={signOut}>
+              <Button type="button" variant="danger" onClick={signOut}>
                 Cerrar sesion
               </Button>
               <Link className="ui-btn ui-btn--primary" to="/dashboard">

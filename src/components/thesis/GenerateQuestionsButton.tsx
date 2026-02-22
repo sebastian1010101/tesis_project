@@ -3,6 +3,9 @@ type GenerateQuestionsButtonProps = {
   loading?: boolean;
 };
 
-export default function GenerateQuestionsButton(_props: GenerateQuestionsButtonProps) {
+export default function GenerateQuestionsButton(
+  props: GenerateQuestionsButtonProps,
+) {
+  void props;
   return <button type="button" />;
 }

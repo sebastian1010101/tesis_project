@@ -94,11 +94,20 @@ hr {
   gap: 12px;
 }
 
+.stack--center {
+  align-items: center;
+  text-align: center;
+}
+
 .row {
   display: flex;
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.row--center {
+  justify-content: center;
 }
 
 .muted {
@@ -154,6 +163,10 @@ hr {
   font-weight: 600;
   color: var(--text);
   background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .ui-btn:disabled {
@@ -194,6 +207,17 @@ hr {
   background: rgba(239, 68, 68, 0.15);
   border-color: rgba(239, 68, 68, 0.35);
   color: #ffd1d1;
+}
+
+.ui-btn--success {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.45);
+  color: #d8ffe8;
+}
+
+.ui-btn--success:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.28);
+  border-color: rgba(34, 197, 94, 0.7);
 }
 
 .ui-modal__backdrop {

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
@@ -16,6 +16,8 @@ function classForVariant(variant: ButtonVariant) {
       return "ui-btn ui-btn--ghost";
     case "danger":
       return "ui-btn ui-btn--danger";
+    case "success":
+      return "ui-btn ui-btn--success";
   }
 }
 

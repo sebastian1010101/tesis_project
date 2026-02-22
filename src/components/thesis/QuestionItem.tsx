@@ -4,6 +4,7 @@ type QuestionItemProps = {
   question: ResearchQuestion;
 };
 
-export default function QuestionItem(_props: QuestionItemProps) {
+export default function QuestionItem(props: QuestionItemProps) {
+  void props;
   return <div />;
 }

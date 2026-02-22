@@ -4,6 +4,7 @@ type QuestionsListProps = {
   questions: ResearchQuestion[];
 };
 
-export default function QuestionsList(_props: QuestionsListProps) {
+export default function QuestionsList(props: QuestionsListProps) {
+  void props;
   return <div />;
 }

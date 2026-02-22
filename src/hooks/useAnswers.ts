@@ -97,7 +97,15 @@ export function useAnswers(projectId: string) {
   );
 
   useEffect(() => {
-    refresh();
+    let cancelled = false;
+    void (async () => {
+      if (cancelled) return;
+      await refresh();
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [refresh]);
 
   return {

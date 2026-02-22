@@ -6,18 +6,18 @@ export default function LandingPage() {
   return (
     <div className="container">
       <Card>
-        <div className="stack">
-          <h1>Tesis.ai</h1>
+        <div className="stack stack--center">
+          <h1>TesisFlow</h1>
           <p>
-            Estructura tu tesis: define un tema, genera preguntas de
-            investigación y desarrolla tus respuestas.
+            Estructura tu tesis {">"} define un tema {">"} genera preguntas de
+            investigación {">"} desarrolla tus respuestas.
           </p>
 
-          <div className="row">
+          <div className="row row--center">
             <Link className="ui-btn ui-btn--primary" to="/login">
               Login
             </Link>
-            <Link className="ui-btn ui-btn--secondary" to="/dashboard">
+            <Link className="ui-btn ui-btn--primary" to="/dashboard">
               Dashboard
             </Link>
           </div>
